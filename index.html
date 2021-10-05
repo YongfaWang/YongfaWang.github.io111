@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<link rel="stylesheet" href="css/comon0.css">
+</head>
+<body>
+<div class="canvas" style="opacity: .2">
+  <iframe frameborder="0" src="js/index.html" style="width: 100%; height: 100%"></iframe>
+</div>
+<div class="loading">
+  <div class="loadbox"> <img src="images/loading.gif"> 页面加载中... </div>
+</div>
+<div class="head">
+  <h1>测站形变监测大屏</h1>
+  <div class="time" id="showTime">2019/11/29 0:12:42</div>
+		<script>
+var t = null;
+    t = setTimeout(time,1000);//開始运行
+    function time()
+    {
+       clearTimeout(t);//清除定时器
+       dt = new Date();
+		var y=dt.getFullYear();
+		var mt=dt.getMonth()+1;
+		var day=dt.getDate();
+       var h=dt.getHours();//获取时
+       var m=dt.getMinutes();//获取分
+       var s=dt.getSeconds();//获取秒
+		var t = null;
+       document.getElementById("showTime").innerHTML = y+"/"+Appendzero(mt)+"/"+Appendzero(day)+" "+Appendzero(h)+":"+Appendzero(m)+":"+Appendzero(s)+"";
+        function Appendzero(obj){
+			if(obj<10) return "0" +""+ obj;
+			else return obj;
+		 }
+		t = setTimeout(time,1000); //设定定时器，循环运行     
+    } 
+
+</script>
+	
+</div>
+<div class="mainbox">
+  <ul class="clearfix">
+    <li>
+	  <div class="boxall" style="height: calc(50% - .15rem)">
+        <div class="alltitle">设备占比情况</div>
+        <div style="height:100%; width: 100%;">
+		  	<div class="sy" id="fb1"></div>
+		  </div>
+        <div class="boxfoot">
+		  </div>
+      </div>
+       <div class="boxall" style="height: calc(50% - .15rem)">
+        <div class="alltitle">监测设备站点信息</div>
+        <div class="wrap boxnav">
+          <ul id="zhandian">
+            <!-- 监测设备站点信息 列表 js动态插入-->
+          </ul>
+        </div>
+        <div class="boxfoot"></div>
+      </div>
+    </li>
+    <li>
+     <div style="position: relative">
+		<div class="barnav">
+			
+			 <div class="bar">
+        <div class="barbox">
+          <ul class="clearfix">
+            <li class="pulll_left counter">194</li>
+            <li class="pulll_left counter">11</li>
+            <li class="pulll_left counter">8</li>
+            <li class="pulll_left counter">2</li>
+          </ul>
+        </div>
+        <div class="barbox2">
+          <ul class="clearfix">
+            <li class="pulll_left">正常站</li>
+            <li class="pulll_left">关注站</li>
+            <li class="pulll_left">警示站</li>
+            <li class="pulll_left">警报站</li>
+          </ul>
+        </div>
+		  
+      </div>
+		</div>
+		 </div>
+      <div class="mapbox">
+		<div class="map">
+        <div class="map1"><img src="images/lbx.png"></div>
+        <div class="map2"><img src="images/jt.png"></div>
+        <div class="map3"><img src="images/map.png"></div>
+        <div class="map4" id="map_1"></div>
+      </div>
+		</div>
+    </li>
+    <li>
+		<!-- <div class="boxall" style="height: calc(50% - .15rem)">
+        <div class="alltitle">字段名称 <div class="pulll_right">
+			<a href="#"><span></span>已维修</a>
+			<a href="#"><span></span>未维修</a>
+			</div></div>
+        
+        <div class="boxnav" id="echart3"></div>
+        
+        <div class="boxfoot"></div>
+      </div> -->
+	  <div class="boxall" style="height: calc(50% - .15rem)">
+        <div class="alltitle">设备分布情况 </div>
+        <div style="height:100%; width: 100%;">
+		  	<div class="sy" id="fb2"></div>
+		  </div>
+        <div class="boxfoot">
+		  </div>
+      </div>
+	  <div class="boxall" style="height: calc(50% - .15rem)">
+        <div class="alltitle">形变量TOP7</div>
+        <div class="boxnav" id="echart1"></div>
+        <div class="boxfoot"></div>
+      </div>
+    </li>
+  </ul>
+  <!-- <div class="copyright">九州星辰</div> -->
+</div>
+	
+	<div class="mainbox2">
+  <ul class="clearfix">
+    <li>
+		  <div class="boxall" style="height:100%">
+        <div class="alltitle">形变量曲线图
+			  <div class="pulll_right sebtn" >
+			<!-- <a href="#" class="active">近七天</a>
+			<a href="#">近30天</a>
+			<a href="#">12月</a> -->
+			</div>
+			  </div>
+         <div class="boxnav" id="echart4"></div>
+        <div class="boxfoot"></div>
+      </div>
+	  </li>
+    <li>
+      <div class="boxall" style="height:100%">
+        <div class="alltitle">形变量预测曲线图（24小时）
+			  <div class="pulll_right sebtn" >
+			<!-- <a href="#" class="active">近七天</a>
+			<a href="#">近30天</a>
+			<a href="#">12月</a> -->
+			</div>
+			  </div>
+         <div class="boxnav" id="echart5"></div>
+        <div class="boxfoot"></div>
+      </div>
+    </li>
+    <!-- <li>
+      <div class="boxall" style="height: 100%">
+          <div class="alltitle">形变量预测曲线图（24小时）
+            <div class="pulll_right">
+            <a href="#"><span></span>已检点</a>
+            <a href="#"><span></span>未检点</a>
+            </div>
+        </div>
+        <div class="boxnav">
+          <ul class="btbox">
+          <li id="bt01"></li>
+          <li id="bt02"></li>
+          <li id="bt03"></li>
+          <li id="bt04"></li>
+          </ul>
+        </div>
+        <div class="boxfoot"></div>
+      </div>
+    </li> -->
+
+	  
+		</ul>
+		</div>
+
+<script language="JavaScript" src="js/js.js"></script> 
+<script type="text/javascript" src="js/echarts.min.js"></script> 
+<!-- <script type="text/javascript" src="js/china.js"></script>  -->
+<script type="text/javascript" src="http://47.95.194.30/bi/js/china.js"></script> 
+<script type="text/javascript" src="js/area_echarts.js"></script> 
+<script src="js/jquery.liMarquee.js"></script> 
+<script>
+$(function(){
+	$('.wrap,.adduser').liMarquee({
+		direction: 'up',//身上滚动 
+		runshort: false,//内容不足时不滚动
+		scrollamount: 20//速度
+	});
+});
+	
+</script> 
+<script type="text/javascript" src="./js/databind.js"></script>
+
+<script type="text/javascript">
+		// $('.counter').countUp();
+  </script>
+</body>
+</html>
